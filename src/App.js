@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from "react";
+import Header from "./Component/Header/Header";
+import Form from "../src/Component/Form/Form";
+import CardList from "./Component/Cardlist/CardList"
+class App extends React.Component{
+  state={
+    profiles: []
+  }
+  addProfile = (newData)=>{
+   
+    this.setState(prevState=>({
+      profiles: [...prevState.profiles, newData]
+    }))
+      
+    console.log(newData);
+  }
+  render(){
+    return(
+      <div>
+        <Header />
+        <Form addProfile={this.addProfile}/>
+        <CardList profiles={this.state.profiles}/>
+      </div>
+      
+    );
+  }
 }
 
 export default App;
